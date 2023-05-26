@@ -2,7 +2,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
-import { dniValidacion } from "./Validaciones";
 
 const Formulario = () => {
   const {
@@ -24,7 +23,7 @@ const Formulario = () => {
  }
   return (
     <Form onSubmit={handleSubmit(enviar)}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="nom">
         <Form.Label className="fw-semibold fs-4">Nombre</Form.Label>
         <Form.Control
           type="text"
@@ -53,7 +52,7 @@ const Formulario = () => {
               )}
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="ap">
         <Form.Label className="fw-semibold fs-4">Apellido</Form.Label>
         <Form.Control type="text" placeholder="Ej: Filsinger"  {...register("apellido", {
             required: true,
@@ -76,9 +75,9 @@ const Formulario = () => {
              </div>
               )}
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="documento">
         <Form.Label className="fw-semibold fs-4">DNI</Form.Label>
-        <Form.Control type="number" placeholder="Ej: 42008591"  {...register("dni", { required: true, valueAsNumber: true, validate:dniValidacion })} />
+        <Form.Control type="number" placeholder="Ej: 42008591"  {...register("dni", { required: true, valueAsNumber: true})} />
         {errors.dni?.type === "required" && (
                <div className="alert alert-danger m-3 text-center fw-semibold fst-italic" role="alert">
                ❌ Ingrese su DNI
@@ -88,16 +87,9 @@ const Formulario = () => {
                 <div className="alert alert-danger m-3 text-center fw-semibold fst-italic" role="alert">
                 ❌ Debe ingresar numeros
               </div>
-              )}
-              {errors.dni?.type === "validate" && (
-                <div className="alert alert-danger m-3 text-center fw-semibold fst-italic" role="alert">
-                ❌ El DNI ingresado debe tener como minimo 7 números y como máximo 8
-
-              </div>
-              )}
-          
+              )} 
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="correo">
         <Form.Label className="fw-semibold fs-4">Email</Form.Label>
         <Form.Control type="email" placeholder="Ej: aixa@gmail.com"  {...register("email", {
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,required:true
